@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/materialize.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/my-style.css' %}" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Books & Authors</title>
+    <link rel='shortcut icon' type='image/x-icon' href="{% static 'images/favicon.ico'  %}"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="{% static 'js/materialize.js' %}"></script>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="flex-container adder">
+        <h4>Add an Author</h4>
+
+        <form action="/add_author" method="post" class="col s12">
+          {% csrf_token %}
+          <div>
+            <div class="row">
+              <div class="input-field col s8">
+                <input
+                  id="first"
+                  type="text"
+                  class="validate"
+                  name="first_name"
+                />
+                <label for="first">First Name</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s8">
+                <input
+                  id="last"
+                  type="text"
+                  class="validate"
+                  name="last_name"
+                />
+                <label for="last">Last Name</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s8">
+                <textarea
+                  id="notes"
+                  class="materialize-textarea"
+                  name="notes"
+                ></textarea>
+                <label for="notes">Notes</label>
+              </div>
+            </div>
+
+            <button
+              class="btn waves-effect waves-light"
+              type="submit"
+              name="action"
+            >
+              Add
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="book-table">
+        <table class="striped table1">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {%for author in authors %}
+            <tr>
+              <td>{{author.id}}</td>
+              <td>{{author.first_name}} {{author.last_name}}</td>
+              <td>
+                <a href="/authors/{{author.id}}">View</a>
+              </td>
+            </tr>
+            {%endfor%}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

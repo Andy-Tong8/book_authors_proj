@@ -1,0 +1,28 @@
+.wrapper {
+  padding: 10px;
+}
+/* .wrapper > div {
+  display: block;
+} */
+
+table th,
+table tr,
+table td {
+  padding: 10px 10px;
+}
+
+.adder,
+.book-table {
+  width: 45%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.table1 {
+  width: 50%;
+}
+
+h4,
+.selector {
+  margin-left: 15%;
+}
